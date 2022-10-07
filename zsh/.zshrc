@@ -109,7 +109,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
-export STOW_FOLDERS="bin,nvim,tmux,uwuntu,personal,zsh,xkb"
+export STOW_FOLDERS="bin,nvim,tmux,zsh"
 
 alias python='python3'
 alias gwip="git add --all && git commit -m 'WIP'"
