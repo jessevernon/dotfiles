@@ -1,4 +1,4 @@
-local Remap = require("theprimeagen.keymap")
+local Remap = require("jvernon.keymap")
 local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 

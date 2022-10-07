@@ -1,4 +1,4 @@
-local nnoremap = require("theprimeagen.keymap").nnoremap
+local nnoremap = require("jvernon.keymap").nnoremap
 
 function ContextSetup(show_all_context)
     require("treesitter-context").setup({
