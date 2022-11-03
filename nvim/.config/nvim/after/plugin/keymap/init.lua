@@ -11,8 +11,8 @@ local nmap = Remap.nmap
 
 -- Terminal settings <leader>ESCp+
 tnoremap("<leader><ESC>", "<C-\\><C-n>")
-tnoremap("<leader>p", "'<C-\\><C-N>\"0pi'")
-tnoremap("<leader>+", "'<C-\\><C-N>\"+pi'")
+tnoremap("<leader>p", "<C-\\><C-N>\"0pi")
+tnoremap("<leader>+", "<C-\\><C-N>\"+pi")
 
 -- Navigation LHKJ
 noremap("<C-h>", "<C-w>h")
@@ -38,6 +38,7 @@ inoremap("<C-r>", "<C-g>u<C-r>")
 nnoremap("<leader>h", ":noh<CR>")
 nnoremap("<leader>.", ";")
 nnoremap("gp", "`[v`]")
+inoremap("<C-n>", "<ESC>:Copilot panel<CR>")
 
 -- Enter highlight function
 vim.g.highlighting = false
@@ -54,9 +55,9 @@ nnoremap(
             vim.g.highlighting = false
             return ":silent nohlsearch<CR>"
         else
-          vim.cmd(string.format("let @/=\"%s\"", current_word_regex_double_escaped))
-          vim.g.highlighting = true
-          return ":silent set hlsearch<CR>"
+            vim.cmd(string.format("let @/=\"%s\"", current_word_regex_double_escaped))
+            vim.g.highlighting = true
+            return ":silent set hlsearch<CR>"
         end
     end,
     { expr = true, silent = true }
@@ -87,7 +88,7 @@ noremap("<leader>M", ":if empty(filter(getwininfo(), 'v:val.quickfix')) | lopen 
 
 -- Buffers <leader>qwQ
 noremap("<leader>q", ":b#<CR>")
-tnoremap("<leader>q", ":b#<CR>")
+tnoremap("<leader>q", "<C-\\><C-n>:b#<CR>")
 noremap("<leader>w", ":only<CR>")
 --tmap <leader>w <C-\\><C-n>:only<CR>
 noremap("<leader>W", ":close<CR>")
@@ -102,7 +103,10 @@ noremap("<leader>b", ":Telescope buffers<CR>")
 tnoremap("<leader>b", "<C-\\><C-n>:Telescope buffers<CR>")
 noremap("<leader>f", ":Telescope jumplist<CR>")
 tnoremap("<leader>f", "<C-\\><C-n>:Telescope jumplist<CR>")
-noremap("<leader>g", ":Telescope find_files<CR>")
+--noremap("<leader>g", ":Telescope find_files<CR>")
+nnoremap("<Leader>g", function()
+    require('telescope.builtin').find_files()
+end)
 tnoremap("<leader>g", "<C-\\><C-n>:Telescope find_files<CR>")
 noremap("<leader>G", ":Telescope oldfiles<CR>")
 tnoremap("<leader>G", "<C-\\><C-n>:Telescope oldfiles<CR>")
@@ -132,3 +136,9 @@ nnoremap("<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 --nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 --nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+--
+-- Pretty print XML
+vim.cmd("command! PrettyXML :set filetype=xml | %!python3 -c \"import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())\"")
+
+-- Pretty print Json
+vim.cmd("command! PrettyJson :set filetype=json | %!python3 -m \"json.tool\"")

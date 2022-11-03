@@ -53,3 +53,7 @@ vim.g.netrw_winsize = 25
 
 -- ripgrep!
 vim.opt.grepprg = "rg --vimgrep"
+
+-- no multi-line comments
+vim.opt.formatoptions:remove("r")
+vim.opt.formatoptions:remove("o")

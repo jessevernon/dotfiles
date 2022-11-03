@@ -99,6 +99,30 @@ _G.packer_plugins = {
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["copilot-cmp"] = {
+    config = { "\27LJ\2\2ñ\3\0\0\a\0\22\0B6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\0016\0\0\0'\1\4\0B\0\2\0029\1\5\0\n\1\0\0X\0015€9\1\2\0005\2\20\0005\3\6\0004\4\f\0006\5\0\0'\6\a\0B\5\2\0029\5\b\5>\5\1\0046\5\0\0'\6\a\0B\5\2\0029\5\t\5>\5\2\0049\5\5\0009\5\n\0059\5\v\5>\5\3\0049\5\5\0009\5\n\0059\5\f\5>\5\4\0049\5\5\0009\5\n\0059\5\t\5>\5\5\0049\5\5\0009\5\n\0059\5\r\5>\5\6\0049\5\5\0009\5\n\0059\5\14\5>\5\a\0049\5\5\0009\5\n\0059\5\15\5>\5\b\0049\5\5\0009\5\n\0059\5\16\5>\5\t\0049\5\5\0009\5\n\0059\5\17\5>\5\n\0049\5\5\0009\5\n\0059\5\18\5>\5\v\4=\4\19\3=\3\21\2B\1\2\1K\0\1\0\fsorting\1\0\0\16comparators\norder\vlength\14sort_text\tkind\rlocality\18recently_used\nexact\voffset\fcompare\nscore\15prioritize\28copilot_cmp.comparators\1\0\1\20priority_weight\3\2\vconfig\bcmp\1\0\1\vmethod\26getCompletionsCycling\nsetup\16copilot_cmp\frequire\0" },
+    load_after = {
+      ["copilot.lua"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/opt/copilot-cmp",
+    url = "https://github.com/zbirenbaum/copilot-cmp"
+  },
+  ["copilot.lua"] = {
+    after = { "copilot-cmp" },
+    config = { "\27LJ\2\0025\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fcopilot\frequire-\1\0\3\0\3\0\0066\0\0\0009\0\1\0003\1\2\0)\2d\0B\0\3\1K\0\1\0\0\rdefer_fn\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/opt/copilot.lua",
+    url = "https://github.com/zbirenbaum/copilot.lua"
+  },
+  ["dirbuf.nvim"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/dirbuf.nvim",
+    url = "https://github.com/elihunter173/dirbuf.nvim"
+  },
   ["git-worktree.nvim"] = {
     loaded = true,
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
@@ -134,20 +158,30 @@ _G.packer_plugins = {
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
   neoformat = {
     loaded = true,
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
   },
-  neogit = {
-    loaded = true,
-    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/neogit",
-    url = "https://github.com/TimUntersberger/neogit"
-  },
   nerdcommenter = {
     loaded = true,
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/scrooloose/nerdcommenter"
+  },
+  ["nvim-bqf"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/nvim-bqf",
+    url = "https://github.com/kevinhwang91/nvim-bqf"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -200,6 +234,11 @@ _G.packer_plugins = {
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -215,10 +254,25 @@ _G.packer_plugins = {
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/vim-abolish",
     url = "https://github.com/tpope/vim-abolish"
   },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
   ["vim-rsi"] = {
     loaded = true,
     path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/vim-rsi",
     url = "https://github.com/tpope/vim-rsi"
+  },
+  ["vim-sneak"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/vim-sneak",
+    url = "https://github.com/justinmk/vim-sneak"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/jvernon/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   },
   vimwiki = {
     loaded = true,
@@ -228,6 +282,13 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'copilot.lua'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
