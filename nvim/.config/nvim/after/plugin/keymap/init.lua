@@ -26,10 +26,10 @@ noremap("J", "[}")
 
 -- Text searching <leader>hjkl
 nnoremap("<leader>j", ":grep! \"\" | cw<Left><Left><Left><Left><Left><Left>")
-nnoremap("<leader>k", ":grep! \"\\b<cword>\\b\"<CR>:cw<CR>")
+nnoremap("<leader>k", ":grep! \"\\b<cword>\\b\"<CR>:botright copen<CR>")
 nnoremap("<leader>l", ":Telescope quickfix")
 nnoremap("<leader>;", ":Telescope quickfixhistory")
-vnoremap("<leader>k", ":<C-U>execute('grep! \"\\b' . Get_visual_selection() . '\\b\"')<CR>:cw<CR>")
+vnoremap("<leader>k", ":<C-U>execute('grep! \"\\b' . Get_visual_selection() . '\\b\"')<CR>:botright copen<CR>")
 
 -- Text editing
 noremap("<leader>d", "\"_d")
@@ -65,16 +65,18 @@ nnoremap(
 
 -- Quickfix / loclist <leader>nm,.M<>
 noremap("<leader>n", ":cn<CR>")
-noremap("<leader>m", ":if empty(filter(getwininfo(), 'v:val.quickfix')) | copen | else | cclose | endif<CR>")
+noremap("<leader>m", ":if empty(filter(getwininfo(), 'v:val.quickfix')) | botright copen | else | cclose | endif<CR>")
 noremap("<leader>N", ":ln<CR>")
-noremap("<leader>M", ":if empty(filter(getwininfo(), 'v:val.quickfix')) | lopen | else | lclose | endif<CR>")
+noremap("<leader>M", ":if empty(filter(getwininfo(), 'v:val.quickfix')) | botright lopen | else | lclose | endif<CR>")
 
 -- IDE <leader>ert
 -- map <leader>t :NERDTreeToggle<CR>
 -- map <leader>T :NERDTreeFind<CR>
 --map <leader>t :NvimTreeToggle<CR>
---map <leader>T :NvimTreeFindFile<CR>
---map <leader>r :TagbarToggle<CR>
+--map <leader>T :NvimTreeFindFile<CRk
+noremap("<leader>e", ":Git<CR>")
+noremap("<leader>r", ":SymbolsOutline<CR>")
+noremap("<leader>t", ":NoNeckPain<CR>")
 --map <leader>e :call GstatusToggle()<CR>
 
 -- Tag jumping <leader>zxcvb
@@ -122,12 +124,12 @@ nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 
 -- Fix :W mistake
---vim.api.nvim_create_user_command()
---command! WQ wq
---command! Wq wq
---command! W w
---command! Q q
+vim.cmd("command! W w")
+vim.cmd("command! WQ wq")
+vim.cmd("command! Wq wq")
+vim.cmd("command! Q q")
 
+-- Copy/paste
 noremap("<leader>p", "\"+p")
 noremap("<leader>y", "\"+y")
 
@@ -142,3 +144,26 @@ vim.cmd("command! PrettyXML :set filetype=xml | %!python3 -c \"import xml.dom.mi
 
 -- Pretty print Json
 vim.cmd("command! PrettyJson :set filetype=json | %!python3 -m \"json.tool\"")
+
+-- Delete current buffer but keep split
+vim.cmd("command! -bang BD bp|bd<bang> #")
+
+-- LSP
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+-- Mappings.
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+vim.keymap.set('n', '<leader>zk', vim.lsp.buf.signature_help, bufopts)
+vim.keymap.set('n', '<leader>zr', vim.lsp.buf.rename, bufopts)
+vim.keymap.set('n', '<leader>za', vim.lsp.buf.code_action, bufopts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+vim.keymap.set('n', '<leader>zf', function() vim.lsp.buf.format { async = true } end, bufopts)

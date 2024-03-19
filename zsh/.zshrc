@@ -71,7 +71,7 @@ ZSH_THEME="eastwood"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z git zsh-autosuggestions)
+plugins=(z git zsh-autosuggestions asdf bazel)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,7 +111,18 @@ source /usr/share/doc/fzf/examples/completion.zsh
 
 export STOW_FOLDERS="bin,nvim,tmux,zsh"
 
-alias python='python3'
+#alias python='python3'
 alias gwip="git add --all && git commit -m 'WIP'"
 alias gco='() { git checkout $1; }'
 alias dv='devbox.py'
+alias br='bazel run '
+alias bt='bazel test --test_output=streamed '
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export POSTGRES_PASSWORD="POSTGRES_PASSWORD"

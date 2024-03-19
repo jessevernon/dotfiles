@@ -52,7 +52,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 -- ripgrep!
-vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepprg = 'rg --vimgrep --glob "!*experimental/*"'
 
 -- no multi-line comments
 vim.opt.formatoptions:remove("r")

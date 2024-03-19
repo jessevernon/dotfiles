@@ -23,3 +23,14 @@ autocmd('TextYankPost', {
         })
     end,
 })
+
+-- write an autocmd to run !isort % and !black % on save for .py files
+autocmd('BufWritePost', {
+    group = jvernon_group,
+    pattern = "*.py",
+    callback = function()
+        vim.fn.system("ruff format " .. vim.fn.expand('%'))
+        vim.fn.system("ruff check --fix " .. vim.fn.expand('%'))
+        vim.cmd("e!")
+    end,
+})
