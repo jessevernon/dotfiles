@@ -80,6 +80,11 @@ _G.packer_plugins = {
     path = "/home/jessevernon/.local/share/nvim/site/pack/packer/start/ChatGPT.nvim",
     url = "https://github.com/jackMort/ChatGPT.nvim"
   },
+  ["CopilotChat.nvim"] = {
+    loaded = true,
+    path = "/home/jessevernon/.local/share/nvim/site/pack/packer/start/CopilotChat.nvim",
+    url = "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/home/jessevernon/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -130,6 +135,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jessevernon/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/jessevernon/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["gp.nvim"] = {
+    config = { "\27LJ\2\0028\0\0\3\0\3\0\b4\0\0\0006\1\0\0'\2\1\0B\1\2\0029\1\2\1\18\2\0\0B\1\2\1K\0\1\0\nsetup\agp\frequire\0" },
+    loaded = true,
+    path = "/home/jessevernon/.local/share/nvim/site/pack/packer/start/gp.nvim",
+    url = "https://github.com/robitx/gp.nvim"
   },
   harpoon = {
     loaded = true,
@@ -274,14 +290,18 @@ time([[Config for catppuccin]], false)
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\2C\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\1\nicons\1\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
--- Config for: octo.nvim
-time([[Config for octo.nvim]], true)
-try_loadstring("\27LJ\2\0022\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
-time([[Config for octo.nvim]], false)
+-- Config for: gp.nvim
+time([[Config for gp.nvim]], true)
+try_loadstring("\27LJ\2\0028\0\0\3\0\3\0\b4\0\0\0006\1\0\0'\2\1\0B\1\2\0029\1\2\1\18\2\0\0B\1\2\1K\0\1\0\nsetup\agp\frequire\0", "config", "gp.nvim")
+time([[Config for gp.nvim]], false)
 -- Config for: ChatGPT.nvim
 time([[Config for ChatGPT.nvim]], true)
 try_loadstring("\27LJ\2\0025\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fchatgpt\frequire\0", "config", "ChatGPT.nvim")
 time([[Config for ChatGPT.nvim]], false)
+-- Config for: octo.nvim
+time([[Config for octo.nvim]], true)
+try_loadstring("\27LJ\2\0022\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
+time([[Config for octo.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

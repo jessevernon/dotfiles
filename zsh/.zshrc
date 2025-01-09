@@ -117,6 +117,8 @@ alias gco='() { git checkout $1; }'
 alias dv='devbox.py'
 alias br='bazel run '
 alias bt='bazel test --test_output=streamed '
+alias fd='fdfind'
+alias mkd='mkdir -p && cd'
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
@@ -126,3 +128,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export POSTGRES_PASSWORD="POSTGRES_PASSWORD"
+
+# pnpm
+export PNPM_HOME="/home/jessevernon/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

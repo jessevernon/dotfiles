@@ -2,38 +2,85 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'tsserver',
-  'pyright',
-})
+--lsp.ensure_installed({
+--  'tsserver',
+--})
 
 -- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+--lsp.configure(
+--    'lua-language-server', {
+--    settings = {
+--        Lua = {
+--            diagnostics = {
+--                globals = { 'vim' }
+--            }
+--        }
+--    }
+--})
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+require('lspconfig').pyright.setup({
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'openFilesOnly',
+      },
+    },
+  },
 })
 
+require('lspconfig')['rust_analyzer'].setup({
+    on_attach = function(client, bufnr)
+        -- Enable formatting on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.formatting_sync(nil, 1000)
+            end
+        })
+    end,
+})
+
+require('mason-lspconfig').setup({
+  handlers = {
+    -- this first function is the "default handler"
+    -- it applies to every language server without a "custom handler"
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+
+    -- this is the "custom handler" for `example_server`
+    pyright = function()
+      require('lspconfig').pyright.setup({
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'openFilesOnly',
+      },
+      })
+    end,
+  },
+})
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
-})
-
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
-})
+--local cmp_select = {behavior = cmp.SelectBehavior.Select}
+--local cmp_mappings = lsp.defaults.cmp_mappings({
+--  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+--  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+--  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+--  ["<C-Space>"] = cmp.mapping.complete(),
+--})
+--
+--cmp_mappings['<Tab>'] = nil
+--cmp_mappings['<S-Tab>'] = nil
+--
+--lsp.setup_nvim_cmp({
+--  mapping = cmp_mappings
+--})
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
@@ -65,6 +112,7 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
+
 --
 --local Remap = require("jvernon.keymap")
 --local nnoremap = Remap.nnoremap
@@ -327,3 +375,12 @@ vim.diagnostic.config({
 --    include = nil, -- Load all languages
 --    exclude = {},
 --})
+
+require("lspconfig").pyright.setup{
+  cmd = { "pyright-langserver", "--stdio" },
+  on_new_config = function(new_config, _)
+    new_config.cmd_env = {
+      NODE_OPTIONS = "--max-old-space-size=16384"
+    }
+  end,
+}

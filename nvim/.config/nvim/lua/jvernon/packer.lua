@@ -43,7 +43,6 @@ return require("packer").startup(function()
 
     use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
         requires = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},
@@ -94,4 +93,23 @@ return require("packer").startup(function()
     })
     use("dylon/vim-antlr")
     use("tpope/vim-dadbod")
+    use("lewis6991/gitsigns.nvim")
+    use({
+        "CopilotC-Nvim/CopilotChat.nvim",
+        requires = {
+          "github/copilot.vim",
+          "nvim-lua/plenary.nvim"
+        },
+    })
+    use({
+        "robitx/gp.nvim",
+        config = function()
+            local conf = {
+                -- For customization, refer to Install > Configuration in the Documentation/Readme
+            }
+            require("gp").setup(conf)
+
+            -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+        end,
+    })
 end)
